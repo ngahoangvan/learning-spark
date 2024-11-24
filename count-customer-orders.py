@@ -16,5 +16,5 @@ def parseLine(line):
     return (customer_id, order_amount)
 
 lines = sc.textFile("data/customer-orders.csv")
-rdd = lines.map(parseLine).reduceByKey(lambda x, y: x + y)
+rdd = lines.map(parseLine).reduceByKey(lambda x, y: x + y).sortByKey()
 logger.info(f"Customer orders: {rdd.collect()}")
