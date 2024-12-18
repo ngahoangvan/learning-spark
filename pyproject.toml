@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "langchain-slack-bot"
+version = "0.1.0"
+description = ""
+authors = ["Nga Hoang <ngahv2222@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyspark = "^3.5.3"
+
+
+[tool.poetry.group.dev.dependencies]
+
+pre-commit = "^4.0.1"
+pytest-asyncio = "^0.24.0"
+
+
+[tool.poetry.group.prod.dependencies]
+python-json-logger = "2.0.7"
+
+
+[tool.poetry.group.test.dependencies]
+faker = "^33.1.0"
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+omit = [
+    # omit anything in a .local directory anywhere
+    "*/.local/*",
+    # omit everything in /usr
+    "/usr/*",
+    "*/libs/*",
+]
+
+[tool.pytest.ini_options]
+addopts = "-v --cov-report term --cov-report html:htmlcov --cov-report xml --cov-fail-under=80 --cov ./"
